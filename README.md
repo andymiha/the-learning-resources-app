@@ -1,2 +1,7 @@
 # the-learning-resources-app
-course project made in the Vue.js course offered by Maximilian Schwarzmüller on Udemy
+
+Mini web game created to leverage basic capabilities of Vue.js including:
+
+Additional information:
+- This web app uses the Vue CLI. (Single-Page-Application)
+- It is served using the https protocol.
