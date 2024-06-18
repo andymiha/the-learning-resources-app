@@ -1,4 +1,13 @@
 <template>
+  <BaseDialog v-if="inputIsInvalid" title="Invalid Input" @close="confirmError">
+    <template #default>
+      <p>At least one input value is invalid</p>
+      <p>No Input fields should be empty</p>
+    </template>
+    <template #actions>
+      <BaseButton @click="confirmError">OK</BaseButton>
+    </template>
+  </BaseDialog>
   <BaseCard>
     <!-- to collect data here, we could either use v-model or refs -->
     <form @submit.prevent="submitData">
@@ -29,16 +38,34 @@
 <script>
 export default {
   inject: ['addResource'],
+  data() {
+    return {
+      inputIsInvalid: false,
+    };
+  },
   methods: {
     submitData() {
       const enteredTitle = this.$refs.titleInput.value;
       const enteredDescription = this.$refs.descInput.value;
       const enteredUrl = this.$refs.linkInput.value;
 
+      if (
+        enteredTitle.trim() === '' ||
+        enteredDescription.trim() === '' ||
+        enteredUrl.trim() === ''
+      ) {
+        /* injecting our custom alert */
+        this.inputIsInvalid = true;
+        return;
+      }
+
       /* we could emit a custom event here and have the AddRersource comp listen to it */
       /* but this is hard bc comp is injected dynamically */
       /* we will use provide/inject */
       this.addResource(enteredTitle, enteredDescription, enteredUrl);
+    },
+    confirmError() {
+      this.inputIsInvalid = false;
     },
   },
 };
