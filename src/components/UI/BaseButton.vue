@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  /* Type here could also be a fall through prop */
+  /* Type here could also be a fall through prop (omitted)*/
   props: ['type', 'mode'],
 };
 </script>

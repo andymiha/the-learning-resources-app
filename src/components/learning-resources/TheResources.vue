@@ -46,10 +46,12 @@ export default {
       ],
     };
   },
+  /* this provides an array that is tracked by Vue (notifies changes)*/
   provide() {
     return {
       resources: this.storedResources,
       addResource: this.addResource,
+      removeResource: this.removeResource,
     };
   },
   computed: {
@@ -73,6 +75,18 @@ export default {
       };
       this.storedResources.unshift(newResource);
       this.selectedTab = 'StoredResources';
+    },
+    removeResource(id) {
+      /* this approach registers changes with a brand new array that IS NOT reprovided to the components */
+      /* this.storedResources = this.storedResources.filter(
+        (resource) => resource.id !== id
+      ); */
+
+      /* this approach performs operations directly on the original array */
+      const resourceIndex = this.storedResources.findIndex(
+        (resource) => resource.id === id
+      );
+      this.storedResources.splice(resourceIndex, 1);
     },
   },
 };
