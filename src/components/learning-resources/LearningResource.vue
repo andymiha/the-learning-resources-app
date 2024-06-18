@@ -1,6 +1,6 @@
 <template>
   <li>
-    <div>
+    <BaseCard>
       <header>
         <h3>{{ resource.title }}</h3>
         <button>Delete</button>
@@ -9,7 +9,7 @@
       <nav>
         <a :href="resource.link">View Resource</a>
       </nav>
-    </div>
+    </BaseCard>
   </li>
 </template>
 
