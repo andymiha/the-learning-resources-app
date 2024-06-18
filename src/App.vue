@@ -1,19 +1,13 @@
 <template>
-  <ul>
-    <ResourceItem
-      v-for="resource in storedResources"
-      :key="resource.id"
-      :resource="resource"
-    ></ResourceItem>
-  </ul>
+  <StoredResources :resources="storedResources"></StoredResources>
 </template>
 
 <script>
-import ResourceItem from './components/learning-resources/ResourceItem.vue';
+import StoredResources from './components/learning-resources/StoredResources.vue';
 
 export default {
   components: {
-    ResourceItem,
+    StoredResources,
   },
   data() {
     return {
@@ -35,3 +29,19 @@ export default {
   },
 };
 </script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  margin: 0;
+}
+</style>
